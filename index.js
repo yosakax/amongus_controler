@@ -1,11 +1,21 @@
-const request = require("request");
+const axios = require("axios");
 const URL = require("./config.json");
-let options = {
-    url: URL["url"],
-    method: "POST",
-    form: {"username": "TES_API", "content": "AsumiKana"}
+
+const config = {
+    "headers": {
+        "Accept": "application/json",
+        "Content-type": "application/json",
+    }
 };
 
-request(options, function(error, response, body) {
-    console.log(body);
-})
+const postData = {
+    username: "TEST_API",
+    content: "AsumiKana"
+};
+
+const main = async () => {
+    const res = await axios.post(URL["url"], postData, config);
+    console.log(res);
+}
+
+main();
